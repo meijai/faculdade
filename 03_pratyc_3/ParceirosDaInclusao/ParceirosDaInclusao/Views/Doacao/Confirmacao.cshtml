@@ -1,0 +1,31 @@
+﻿<div class="text-center py-5">
+    <h1 class="display-1 text-success mb-4">✅</h1>
+    <h2 class="text-success">Doação Realizada com Sucesso!</h2>
+
+    <div class="alert alert-success fs-5">
+        @TempData["Mensagem"]
+    </div>
+
+    <div class="card mx-auto mt-4" style="max-width: 500px;">
+        <div class="card-body">
+            <h5>Código PIX Simulado</h5>
+            <p class="text-muted">Copie o código abaixo para realizar o pagamento:</p>
+            <code class="bg-light p-3 d-block text-break">
+                00020126580014BR.GOV.BCB.PIX0136@exemplo.apae.com.br0224Doacao APAE - @DateTime.Now.ToString("ddMMyyyy")5204000053039865802BR5925Parceiros da Inclusao6009SAO PAULO62290508@DOACAO@random
+            </code>
+            <button onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)"
+                    class="btn btn-outline-primary mt-3">
+                Copiar Código PIX
+            </button>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg me-3">
+            Voltar ao Início
+        </a>
+        <a asp-controller="Doacao" asp-action="Index" class="btn btn-success btn-lg">
+            Nova Doação
+        </a>
+    </div>
+</div>

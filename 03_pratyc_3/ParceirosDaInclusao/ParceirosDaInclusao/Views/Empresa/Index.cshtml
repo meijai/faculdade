@@ -1,0 +1,65 @@
+﻿@using ParceirosDaInclusao.Models
+
+<h2>Seja uma Empresa Parceira</h2>
+
+@if (TempData["Mensagem"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        @TempData["Mensagem"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-danger">@TempData["Erro"]</div>
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Cadastrar" method="post">
+            <div class="mb-3">
+                <label class="form-label">Nome da Empresa</label>
+                <input type="text" name="Nome" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">CNPJ</label>
+                <input type="text" name="Cnpj" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email para Contato</label>
+                <input type="email" name="Email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Valor Mensal da Parceria (R$)</label>
+                <input type="number" name="ValorParceria" class="form-control" step="0.01" min="1" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Cadastrar como Parceira</button>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<h4>Empresas Parceiras Cadastradas (@SeedData.Empresas.Count)</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Email</th>
+            <th>Valor Mensal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in SeedData.Empresas)
+        {
+            <tr>
+                <td>@emp.Nome</td>
+                <td>@emp.Cnpj</td>
+                <td>@emp.Email</td>
+                <td>R$ @emp.ValorParceria.ToString("N2")</td>
+            </tr>
+        }
+    </tbody>
+</table>

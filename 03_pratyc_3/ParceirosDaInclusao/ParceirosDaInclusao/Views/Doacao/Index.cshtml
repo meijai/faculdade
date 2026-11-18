@@ -1,0 +1,44 @@
+﻿@using ParceirosDaInclusao.Models
+
+<h2>Faça sua Doação</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="RealizarDoacao" method="post">
+
+            <div class="mb-3">
+                <label class="form-label">Selecione a Campanha</label>
+                <select name="campanha" class="form-control" required>
+                    <option value="">-- Escolha uma campanha --</option>
+                    @foreach (var c in SeedData.Campanhas)
+                    {
+                        <option value="@c.Nome">@c.Nome - R$ @c.ValorMeta.ToString("N2")</option>
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Valor da Doação (R$)</label>
+                <input type="number" name="valor" class="form-control" step="0.01" min="1" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    <input type="checkbox" name="recorrente" /> Doação Recorrente (mensal)
+                </label>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Seu Nome</label>
+                <input type="text" name="nome" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Seu Email</label>
+                <input type="email" name="email" class="form-control" required />
+            </div>
+
+            <button type="submit" class="btn btn-success btn-lg">Realizar Doação via PIX</button>
+        </form>
+    </div>
+</div>

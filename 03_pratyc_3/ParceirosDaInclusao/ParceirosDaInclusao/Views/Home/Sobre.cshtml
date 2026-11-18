@@ -1,0 +1,59 @@
+﻿<h2>Dashboard APAE - Administrativo</h2>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5>Total Arrecadado</h5>
+                <h3>R$ @Model.TotalArrecadado.ToString("N2")</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5>Doadores Ativos</h5>
+                <h3>@Model.DoadoresAtivos</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <h5>Empresas Parceiras</h5>
+                <h3>@Model.EmpresasParceiras</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 class="mt-4">Metas de Impacto</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Campanha</th>
+            <th>Meta</th>
+            <th>Arrecadado</th>
+            <th>Progresso</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model.Campanhas)
+        {
+            var percent = c.ValorMeta > 0 ? (c.Arrecadado / c.ValorMeta * 100) : 0;
+            <tr>
+                <td>@c.Nome</td>
+                <td>@c.Meta</td>
+                <td>R$ @c.Arrecadado / R$ @c.ValorMeta</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" style="width: @percent%">@percent.ToString("F0")%</div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Doações Recentes</h4>
+<!-- Tabela similar com Model.DoacoesRecentes -->

@@ -1,0 +1,33 @@
+﻿<h2>Gerenciar Campanhas</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Nova Campanha</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Meta</th>
+            <th>Valor Meta</th>
+            <th>Arrecadado</th>
+            <th>Progresso</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            var percent = c.ValorMeta > 0 ? Math.Round((c.Arrecadado / c.ValorMeta) * 100, 2) : 0;
+            <tr>
+                <td>@c.Nome</td>
+                <td>@c.Meta</td>
+                <td>R$ @c.ValorMeta.ToString("N2")</td>
+                <td>R$ @c.Arrecadado.ToString("N2")</td>
+                <td>@percent%</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@c.Id" class="btn btn-sm btn-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

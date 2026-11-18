@@ -1,0 +1,47 @@
+﻿@using ParceirosDaInclusao.Models
+@using System.Globalization
+
+@model List<Campanha>
+
+<h1 class="text-center mb-4">Bem-vindo à Parceiros da Inclusão</h1>
+<p class="lead text-center">Juntos pela inclusão e desenvolvimento das pessoas com deficiência.</p>
+
+<div class="row">
+    @foreach (var campanha in Model)
+    {
+        var percent = campanha.ValorMeta > 0
+            ? Math.Round((campanha.Arrecadado / campanha.ValorMeta) * 100, 2)
+            : 0;
+
+        var percentCss = percent.ToString(System.Globalization.CultureInfo.InvariantCulture).Replace(",", ".");
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@campanha.Nome</h5>
+                    <p class="card-text">@campanha.Meta</p>
+
+                    <div class="progress mb-3" style="height: 28px;">
+                        <div class="progress-bar bg-success fw-bold d-flex align-items-center justify-content-center"
+                             style="width: @percentCss%"
+                             role="progressbar">
+                            @percent.ToString("F2")%
+                        </div>
+                    </div>
+
+                    <p class="text-muted">
+                        <strong>R$ @campanha.Arrecadado.ToString("N2")</strong>
+                        de
+                        <strong>R$ @campanha.ValorMeta.ToString("N2")</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="text-center mt-4">
+    <a asp-controller="Doacao" asp-action="Index" class="btn btn-success btn-lg px-5">
+        Quero Fazer uma Doação
+    </a>
+</div>

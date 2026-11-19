@@ -17,10 +17,8 @@ Projeto e implementação de um mini-ORM para a persistência de entidades de um
 - `src/Infrastructure/AutorRepository.php`: Especialização para Autor e função `consultarPorContrato`.
 - `src/Infrastructure/Conexao.php`: Fábrica de conexões PDO configurada para MySQL (com fallback automático para XAMPP).
 - `tests/smoke.php`: Script de demonstração que executa e valida **todas as 7 evidências** exigidas na avaliação.
-- `RELATORIO_TECNICO.pdf`: Relatório técnico oficial em PDF para entrega ao professor.
-- `RELATORIO_TECNICO.html`: Relatório técnico formatado em HTML para visualização e impressão.
-- `APRESENTACAO.md`: Roteiro da apresentação em tópicos Markdown.
-- `APRESENTACAO.html`: Apresentação visual interativa em slides para o navegador.
+- `../RELATORIO_TECNICO.pdf`: Relatório técnico oficial em PDF para entrega ao professor.
+- `../diagramas/`: Diagramas de classes, ER e sequência (PDF).
 
 ## Requisitos e Execução
 - PHP 8.2+ com `pdo_mysql` habilitado
